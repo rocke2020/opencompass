@@ -3,6 +3,7 @@ from typing import List, Tuple, Union
 
 import tabulate
 from mmengine.config import Config
+from loguru import logger
 
 from opencompass.datasets.custom import make_custom_dataset_config
 from opencompass.models import VLLM, HuggingFaceCausalLM, TurboMindModel
@@ -23,6 +24,7 @@ def match_cfg_file(workdir: str,
         pattern = [pattern]
     pattern = [p + '.py' if not p.endswith('.py') else p for p in pattern]
     files = match_files(workdir, pattern, fuzzy=False)
+    logger.info(f'{files = }')
     if len(files) != len(pattern):
         nomatched = []
         ambiguous = []
@@ -105,10 +107,11 @@ def get_config_from_arg(args) -> Config:
             else:
                 dataset_name = dataset_arg
                 dataset_key_suffix = '_datasets'
-
+            # logger.info(f'{datasets_dir = } {dataset_name = } {dataset_key_suffix = }')
             for dataset in match_cfg_file(datasets_dir, [dataset_name]):
                 get_logger().info(f'Loading {dataset[0]}: {dataset[1]}')
                 cfg = Config.fromfile(dataset[1])
+                logger.info(f'{list(cfg.keys()) = }')
                 for k in cfg.keys():
                     if k.endswith(dataset_key_suffix):
                         datasets += cfg[k]
