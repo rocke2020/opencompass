@@ -272,7 +272,8 @@ def main():
                            'also specified --slurm or --dlc. '
                            'The "infer" configuration will be overridden by '
                            'your runtime arguments.')
-
+        # cfg_infer = cfg.get('infer', None)
+        # logger.info(f'{cfg_infer = }')  # By default, cfg_infer = None
         if args.dlc or args.slurm or cfg.get('infer', None) is None:
             fill_infer_cfg(cfg, args)
 
@@ -287,6 +288,7 @@ def main():
             cfg.infer.runner.debug = True
         if args.lark:
             cfg.infer.runner.lark_bot_url = cfg['lark_bot_url']
+        logger.info(f'{cfg.infer = }')
         cfg.infer.partitioner['out_dir'] = osp.join(cfg['work_dir'],
                                                     'predictions/')
         partitioner = PARTITIONERS.build(cfg.infer.partitioner)
