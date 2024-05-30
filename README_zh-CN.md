@@ -69,6 +69,8 @@
 
 ## 🚀 最新进展 <a><img width="35" height="20" src="https://user-images.githubusercontent.com/12782558/212848161-5e783dd6-11e8-4fe0-bbba-39ffb77730be.png"></a>
 
+- **\[2024.05.08\]** 我们支持了以下四个MoE模型的评测配置文件: [Mixtral-8x22B-v0.1](configs/models/mixtral/hf_mixtral_8x22b_v0_1.py), [Mixtral-8x22B-Instruct-v0.1](configs/models/mixtral/hf_mixtral_8x22b_instruct_v0_1.py), [Qwen1.5-MoE-A2.7B](configs/models/qwen/hf_qwen1_5_moe_a2_7b.py), [Qwen1.5-MoE-A2.7B-Chat](configs/models/qwen/hf_qwen1_5_moe_a2_7b_chat.py) 。欢迎试用!
+- **\[2024.04.30\]** 我们支持了计算模型在给定[数据集](configs/datasets/llm_compression/README.md)上的压缩率（Bits per Character）的评测方法（[官方文献](https://github.com/hkust-nlp/llm-compression-intelligence)）。欢迎试用[llm-compression](configs/eval_llm_compression.py)评测集! 🔥🔥🔥
 - **\[2024.04.26\]** 我们报告了典型LLM在常用基准测试上的表现，欢迎访问[文档](https://opencompass.readthedocs.io/zh-cn/latest/user_guides/corebench.html)以获取更多信息！🔥🔥🔥.
 - **\[2024.04.26\]** 我们废弃了 OpenCompass 进行多模态大模型评测的功能，相关功能转移至 [VLMEvalKit](https://github.com/open-compass/VLMEvalKit)，推荐使用！🔥🔥🔥.
 - **\[2024.04.26\]** 我们支持了 [ArenaHard评测](configs/eval_subjective_arena_hard.py) 欢迎试用！🔥🔥🔥.
@@ -161,19 +163,8 @@ python tools/list_configs.py llama mmlu
 你也可以通过命令行去评测其它 HuggingFace 模型。同样以 LLaMA-7b 为例：
 
 ```bash
-python run.py --datasets ceval_ppl mmlu_ppl \
---hf-path huggyllama/llama-7b \  # HuggingFace 模型地址
---model-kwargs device_map='auto' \  # 构造 model 的参数
---tokenizer-kwargs padding_side='left' truncation='left' use_fast=False \  # 构造 tokenizer 的参数
---max-out-len 100 \  # 最长生成 token 数
---max-seq-len 2048 \  # 模型能接受的最大序列长度
---batch-size 8 \  # 批次大小
---no-batch-padding \  # 不打开 batch padding，通过 for loop 推理，避免精度损失
---num-gpus 1  # 运行该模型所需的最少 gpu 数
+python run.py --datasets ceval_ppl mmlu_ppl --hf-type base --hf-path huggyllama/llama-7b
 ```
-
-> **注意**<br />
-> 若需要运行上述命令，你需要删除所有从 `# ` 开始的注释。
 
 通过命令行或配置文件，OpenCompass 还支持评测 API 或自定义模型，以及更多样化的评测策略。请阅读[快速开始](https://opencompass.readthedocs.io/zh_CN/latest/get_started/quick_start.html)了解如何运行一个评测任务。
 

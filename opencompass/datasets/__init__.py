@@ -12,6 +12,7 @@ from .bustum import *  # noqa: F401, F403
 from .c3 import *  # noqa: F401, F403
 from .cb import *  # noqa: F401, F403
 from .ceval import *  # noqa: F401, F403
+from .charm import *  # noqa: F401, F403
 from .chembench import *  # noqa: F401, F403
 from .chid import *  # noqa: F401, F403
 from .cibench import *  # noqa: F401, F403
@@ -33,6 +34,7 @@ from .custom import *  # noqa: F401, F403
 from .cvalues import *  # noqa: F401, F403
 from .drcd import *  # noqa: F401, F403
 from .drop import *  # noqa: F401, F403
+from .drop_simple_eval import *  # noqa: F401, F403
 from .ds1000 import *  # noqa: F401, F403
 from .ds1000_interpreter import *  # noqa: F401, F403
 from .eprstmt import *  # noqa: F401, F403
@@ -70,7 +72,9 @@ from .math_intern import *  # noqa: F401, F403
 from .mathbench import *  # noqa: F401, F403
 from .mbpp import *  # noqa: F401, F403
 from .medbench import *  # noqa: F401, F403
+from .mgsm import *  # noqa: F401, F403
 from .mmlu import *  # noqa: F401, F403
+from .MMLUArabic import *  # noqa: F401, F403
 from .multirc import *  # noqa: F401, F403
 from .narrativeqa import *  # noqa: F401, F403
 from .natural_question import *  # noqa: F401, F403
