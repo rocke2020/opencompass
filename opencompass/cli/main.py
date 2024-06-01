@@ -3,6 +3,7 @@
 import argparse
 import getpass
 import os
+import sys
 import os.path as osp
 from datetime import datetime
 
@@ -279,6 +280,7 @@ def main():
         else:
             logger.warning('SlurmRunner is not used, so the partition '
                            'argument is ignored.')
+        logger.info(f'{cfg.infer = }')
         if args.debug:
             cfg.infer.runner.debug = True
         if args.lark:
@@ -286,6 +288,7 @@ def main():
         cfg.infer.partitioner['out_dir'] = osp.join(cfg['work_dir'],
                                                     'predictions/')
         partitioner = PARTITIONERS.build(cfg.infer.partitioner)
+        sys.exit()
         tasks = partitioner(cfg)
         if args.dry_run:
             return

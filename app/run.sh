@@ -11,4 +11,5 @@ nohup python run.py \
     --models $model \
     --datasets mmlu_ppl \
     --work-dir app/outputs/$model \
+    --hf-num-gpus 1 \
     > app/logs/run.py-gpu$gpu.log 2>&1 &
